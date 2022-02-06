@@ -1,4 +1,4 @@
-# Electrum - lightweight Fujicoin client
+# Electrum - lightweight Baricoin client
 # Copyright (C) 2011 Thomas Voegtlin
 #
 # Permission is hereby granted, free of charge, to any person
@@ -65,18 +65,18 @@ def inv_dict(d):
 ca_path = certifi.where()
 
 
-base_units = {'FJC':8, 'mFJC':5, 'bits':2, 'sat':0}
+base_units = {'BARI':8, 'mBARI':5, 'bits':2, 'sat':0}
 base_units_inverse = inv_dict(base_units)
-base_units_list = ['FJC', 'mFJC', 'bits', 'sat']  # list(dict) does not guarantee order
+base_units_list = ['BARI', 'mBARI', 'bits', 'sat']  # list(dict) does not guarantee order
 
-DECIMAL_POINT_DEFAULT = 8  # FJC
+DECIMAL_POINT_DEFAULT = 8  # BARI
 
 
 class UnknownBaseUnit(Exception): pass
 
 
 def decimal_point_to_base_unit_name(dp: int) -> str:
-    # e.g. 8 -> "FJC"
+    # e.g. 8 -> "BARI"
     try:
         return base_units_inverse[dp]
     except KeyError:
@@ -84,7 +84,7 @@ def decimal_point_to_base_unit_name(dp: int) -> str:
 
 
 def base_unit_name_to_decimal_point(unit_name: str) -> int:
-    # e.g. "FJC" -> 8
+    # e.g. "BARI" -> 8
     try:
         return base_units[unit_name]
     except KeyError:
@@ -472,11 +472,11 @@ def user_dir():
     if 'ANDROID_DATA' in os.environ:
         return android_data_dir()
     elif os.name == 'posix':
-        return os.path.join(os.environ["HOME"], ".electrum-fjc")
+        return os.path.join(os.environ["HOME"], ".electrum-bari")
     elif "APPDATA" in os.environ:
-        return os.path.join(os.environ["APPDATA"], "Electrum-FJC")
+        return os.path.join(os.environ["APPDATA"], "Electrum-BARI")
     elif "LOCALAPPDATA" in os.environ:
-        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-FJC")
+        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-BARI")
     else:
         #raise Exception("No home directory found in environment variables.")
         return
@@ -648,9 +648,9 @@ def time_difference(distance_in_time, include_seconds):
         return "over %d years" % (round(distance_in_minutes / 525600))
 
 mainnet_block_explorers = {
-    'fujicoin.org': ('https://explorer.fujicoin.org/',
+    'baricoin.org': ('https://explorer.baricoin.org/',
                         {'tx': 'tx/', 'addr': 'address/'}),
-    'system default': ('https://explorer.fujicoin.org/',
+    'system default': ('https://explorer.baricoin.org/',
                         {'tx': 'tx/', 'addr': 'address/'}),
 }
 
@@ -675,7 +675,7 @@ def block_explorer_info():
 
 def block_explorer(config: 'SimpleConfig') -> str:
     from . import constants
-    default_ = 'explorer.fujicoin.org'
+    default_ = 'explorer.baricoin.org'
     be_key = config.get('block_explorer', default_)
     be = block_explorer_info().get(be_key)
     return be_key if be is not None else default_
@@ -711,12 +711,12 @@ def parse_URI(uri: str, on_pr: Callable = None, *, loop=None) -> dict:
 
     if ':' not in uri:
         if not bitcoin.is_address(uri):
-            raise InvalidBitcoinURI("Not a fujicoin address")
+            raise InvalidBitcoinURI("Not a baricoin address")
         return {'address': uri}
 
     u = urllib.parse.urlparse(uri)
-    if u.scheme != 'fujicoin':
-        raise InvalidBitcoinURI("Not a fujicoin URI")
+    if u.scheme != 'baricoin':
+        raise InvalidBitcoinURI("Not a baricoin URI")
     address = u.path
 
     # python for android fails to parse query
@@ -733,7 +733,7 @@ def parse_URI(uri: str, on_pr: Callable = None, *, loop=None) -> dict:
     out = {k: v[0] for k, v in pq.items()}
     if address:
         if not bitcoin.is_address(address):
-            raise InvalidBitcoinURI(f"Invalid fujicoin address: {address}")
+            raise InvalidBitcoinURI(f"Invalid baricoin address: {address}")
         out['address'] = address
     if 'amount' in out:
         am = out['amount']
@@ -803,7 +803,7 @@ def create_bip21_uri(addr, amount_sat: Optional[int], message: Optional[str],
             raise Exception(f"illegal key for URI: {repr(k)}")
         v = urllib.parse.quote(v)
         query.append(f"{k}={v}")
-    p = urllib.parse.ParseResult(scheme='fujicoin', netloc='', path=addr, params='', query='&'.join(query), fragment='')
+    p = urllib.parse.ParseResult(scheme='baricoin', netloc='', path=addr, params='', query='&'.join(query), fragment='')
     return str(urllib.parse.urlunparse(p))
 
 

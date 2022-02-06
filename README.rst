@@ -1,4 +1,4 @@
-Electrum - Lightweight Fujicoin client
+Electrum - Lightweight Baricoin client
 =====================================
 
 ::
@@ -59,7 +59,7 @@ Development version
 
 Check out the code from GitHub::
 
-    git clone git://github.com/fujicoin/electrum-fjc.git
+    git clone git://github.com/baricoin/electrum-bari.git
     cd electrum
 
 Run install (this should install dependencies)::

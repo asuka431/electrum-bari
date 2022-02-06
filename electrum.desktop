@@ -2,21 +2,21 @@
 # sudo desktop-file-install electrum.desktop
 
 [Desktop Entry]
-Comment=Lightweight Fujicoin Client
-Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\"; electrum-fjc %u"
-GenericName[en_US]=Fujicoin Wallet
-GenericName=Fujicoin Wallet
+Comment=Lightweight Baricoin Client
+Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\"; electrum-bari %u"
+GenericName[en_US]=Baricoin Wallet
+GenericName=Baricoin Wallet
 Icon=electrum
-Name[en_US]=Electrum Fujicoin Wallet
-Name=Electrum Fujicoin Wallet
+Name[en_US]=Electrum Baricoin Wallet
+Name=Electrum Baricoin Wallet
 Categories=Finance;Network;
 StartupNotify=true
 StartupWMClass=electrum
 Terminal=false
 Type=Application
-MimeType=x-scheme-handler/fujicoin;
+MimeType=x-scheme-handler/baricoin;
 Actions=Testnet;
 
 [Desktop Action Testnet]
-Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\"; electrum-fjc --testnet %u"
+Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\"; electrum-bari --testnet %u"
 Name=Testnet mode

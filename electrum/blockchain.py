@@ -1,4 +1,4 @@
-# Electrum - lightweight Fujicoin client
+# Electrum - lightweight Baricoin client
 # Copyright (C) 2012 thomasv@ecdsa.org
 #
 # Permission is hereby granted, free of charge, to any person
@@ -287,7 +287,7 @@ class Blockchain(Logger):
             raise Exception("hash mismatches with expected: {} vs {}".format(expected_header_hash, _hash))
         if prev_hash != header.get('prev_block_hash'):
             raise Exception("prev hash mismatch: %s vs %s" % (prev_hash, header.get('prev_block_hash')))
-        # fujicoin do not check bits and target
+        # baricoin do not check bits and target
         return
     
         if constants.net.TESTNET:
@@ -493,7 +493,7 @@ class Blockchain(Logger):
             return hash_header(header)
 
     def get_target(self, index: int) -> int:
-        # fujicoin do not check target
+        # baricoin do not check target
         return 0
     
         # compute target from chunk x, used in chunk x+1
@@ -552,7 +552,7 @@ class Blockchain(Logger):
     def get_chainwork(self, height=None) -> int:
         if height is None:
             height = max(0, self.height())
-        # fujicoin do not check chainwork
+        # baricoin do not check chainwork
         return height
     
         if constants.net.TESTNET:

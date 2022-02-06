@@ -150,9 +150,9 @@ class ExchangeBase(Logger):
 class CoinMarketCap(ExchangeBase):
 
     async def get_rates(self, ccy):
-        json_usd = await self.get_json('api.coinmarketcap.com', '/v1/ticker/fujicoin/')
-        json_eur = await self.get_json('api.coinmarketcap.com', '/v1/ticker/fujicoin/?convert=EUR')
-        json_jpy = await self.get_json('api.coinmarketcap.com', '/v1/ticker/fujicoin/?convert=JPY')
+        json_usd = await self.get_json('api.coinmarketcap.com', '/v1/ticker/baricoin/')
+        json_eur = await self.get_json('api.coinmarketcap.com', '/v1/ticker/baricoin/?convert=EUR')
+        json_jpy = await self.get_json('api.coinmarketcap.com', '/v1/ticker/baricoin/?convert=JPY')
         return {'USD': Decimal(json_usd[0]['price_usd']),
                 'EUR': Decimal(json_eur[0]['price_eur']),
                 'JPY': Decimal(json_jpy[0]['price_jpy'])}
@@ -318,9 +318,9 @@ class CoinDesk(ExchangeBase):
 class CoinGecko(ExchangeBase):
 
     async def get_rates(self, ccy):
-        json = await self.get_json('api.coingecko.com', '/api/v3/simple/price?ids=fujicoin&vs_currencies=btc%2Ceth%2Cltc%2Cbch%2Cbnb%2Ceos%2Cxrp%2Cxlm%2Cusd%2Caed%2Cars%2Caud%2Cbdt%2Cbhd%2Cbmd%2Cbrl%2Ccad%2Cchf%2Cclp%2Ccny%2Cczk%2Cdkk%2Ceur%2Cgbp%2Chkd%2Chuf%2Cidr%2Cils%2Cinr%2Cjpy%2Ckrw%2Ckwd%2Clkr%2Cmmk%2Cmxn%2Cmyr%2Cnok%2Cnzd%2Cphp%2Cpkr%2Cpln%2Crub%2Csar%2Csek%2Csgd%2Cthb%2Ctry%2Ctwd%2Cvef%2Cvnd%2Czar%2Cxdr%2Cxag%2Cxau')
-        return dict([(r.upper(), Decimal(json['fujicoin'][r]))
-                     for r in json['fujicoin']])
+        json = await self.get_json('api.coingecko.com', '/api/v3/simple/price?ids=baricoin&vs_currencies=btc%2Ceth%2Cltc%2Cbch%2Cbnb%2Ceos%2Cxrp%2Cxlm%2Cusd%2Caed%2Cars%2Caud%2Cbdt%2Cbhd%2Cbmd%2Cbrl%2Ccad%2Cchf%2Cclp%2Ccny%2Cczk%2Cdkk%2Ceur%2Cgbp%2Chkd%2Chuf%2Cidr%2Cils%2Cinr%2Cjpy%2Ckrw%2Ckwd%2Clkr%2Cmmk%2Cmxn%2Cmyr%2Cnok%2Cnzd%2Cphp%2Cpkr%2Cpln%2Crub%2Csar%2Csek%2Csgd%2Cthb%2Ctry%2Ctwd%2Cvef%2Cvnd%2Czar%2Cxdr%2Cxag%2Cxau')
+        return dict([(r.upper(), Decimal(json['baricoin'][r]))
+                     for r in json['baricoin']])
 
 
 class itBit(ExchangeBase):

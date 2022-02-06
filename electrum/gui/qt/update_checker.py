@@ -19,8 +19,8 @@ from electrum.logging import Logger
 
 
 class UpdateCheck(QWidget, Logger):
-    url = "https://electrum.fujicoin.org/version"
-    download_url = "https://www.fujicoin.org/downloads.php"
+    url = "https://electrum.baricoin.org/version"
+    download_url = "https://github.com/asuka431/electrum-bari"
 
     VERSION_ANNOUNCEMENT_SIGNING_KEYS = (
         "Fk21aH8Xjd3V3cP6Fw3qMGSmfEQtztLNns",
