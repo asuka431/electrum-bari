@@ -20,7 +20,7 @@ folder.
 2. Build image
 
     ```
-    $ git clone https://github.com/baricoin/electrum-bari.git
+    $ git clone https://github.com/asuka431/electrum-bari.git
     $ cd electrum-bari
     $ sudo docker build -t electrum-wine-builder-img contrib/build-wine
     ```
